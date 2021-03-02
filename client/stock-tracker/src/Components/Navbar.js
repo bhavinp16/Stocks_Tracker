@@ -26,9 +26,7 @@ function Navbar() {
                     </li>
                 </ul>
                 <div class="my-2 my-lg-0 px-3">
-                    <li class="nav-item">
-                        <Link className="text-white" onClick={signout}>Sign out</Link>
-                    </li>
+                    <Link to="/login" className="nav-link text-light" onClick={signout}>Sign out</Link>
                 </div>
             </nav>
         </div>

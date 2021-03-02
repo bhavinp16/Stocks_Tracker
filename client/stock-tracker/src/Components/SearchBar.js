@@ -5,7 +5,10 @@ import axios from 'axios';
 
 function SearchBar() {
 
+    const apikey = "B1304M15MQ95KRG9";
+
     const [inputt, setinputt] = useState("");
+    const [suggArray, setsuggArray] = useState([]);
 
     const handleChange = (e) => {
         setinputt(e.target.value);
@@ -18,13 +21,17 @@ function SearchBar() {
 
     }
 
+
+    //  https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=demo see structure of received data
     useEffect(() => {   //for autocomplete suggestions
         if (inputt.length !== 0) {
             //here to create an api key to make the req and display the json data
-            axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=demo`)
+            axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=${apikey}`)
                 .then(function (response) {
                     // handle success
-                    console.log(response.json());
+                    const bestMatches = response.data.bestMatches;
+                    setsuggArray(bestMatches);
+                    console.log(suggArray);
                 })
                 .catch(function (error) {
                     // handle error
@@ -37,10 +44,22 @@ function SearchBar() {
     }, [inputt])
 
     return (
-        <div>
-            <input type="text" className=" w-75 p-lg-2 m-lg-5 h-25" placeholder="Enter the stock name you want to search for: " onChange={handleChange} />
-            <button onclick={searchStock} > Search </button>
-        </div>
+        <>
+            <div className="">
+                <input type="text" className=" w-75 p-lg-2 m-lg-5 h-25" placeholder="Enter the stock name you want to search for: " onChange={handleChange} />
+                <button onclick={searchStock} className="btn btn-primary btn-lg"> Search </button>
+            </div>
+
+            {/* <div className="">
+                <ul>
+                    <li className="">{suggArray[0].symbol}</li>
+                    <li className="">{suggArray[1].symbol}</li>
+                    <li className="">{suggArray[2].symbol}</li>
+                    <li className="">{suggArray[3].symbol}</li>
+                </ul>
+            </div> */}
+
+        </>
     )
 }
 
