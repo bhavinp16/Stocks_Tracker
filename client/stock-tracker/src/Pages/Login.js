@@ -1,11 +1,14 @@
 import React, { useState, useContext, Fragment } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import usercontext from '../Context/User/usercontext'
 
 
 function Login() {
     const context = useContext(usercontext)
     const { user, setuser } = context
+
+    // currently setting users to some value to edit the home page
+    setuser({ name: "Bhavin", email: "bhavinp16@gmail.com" });
 
     const initialState = {
         email: "",

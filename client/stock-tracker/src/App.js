@@ -5,6 +5,8 @@ import home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; // importing bootstrap 
+import Aboutus from './Pages/Aboutus';
+import MyPortfolio from './Pages/MyPortfolio';
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
                 <>
                   <Route exact path="/" />
                   <Route path="/home" component={home} />
+                  <Route path="/aboutus" component={Aboutus} />
+                  <Route path="/myPortfolio" component={MyPortfolio} />
                 </>
               )}
           </Switch>
