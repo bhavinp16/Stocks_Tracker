@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 // to add search bar suggestions and make api calls on submit
@@ -7,8 +7,8 @@ function SearchBar() {
 
     const apikey = "B1304M15MQ95KRG9";
 
-    const [inputt, setinputt] = useState("");
-    const [suggArray, setsuggArray] = useState([]);
+    const [inputt, setinputt] = useState("");  
+    const [suggArray, setsuggArray] = useState([]); // to store the suggestion names 
 
     const handleChange = (e) => {
         setinputt(e.target.value);
@@ -16,14 +16,6 @@ function SearchBar() {
 
     const searchStock = (e) => {
         e.preventDefault();
-        // here to make the api request and also create stock context to store current stock information  based on the inputt state
-
-
-    }
-
-
-    //  https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=demo see structure of received data
-    useEffect(() => {   //for autocomplete suggestions
         if (inputt.length !== 0) {
             //here to create an api key to make the req and display the json data
             axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=${apikey}`)
@@ -41,8 +33,11 @@ function SearchBar() {
                     // always executed
                 });
         }
-    }, [inputt])
 
+        // here to make the api request and also create stock context to store current stock information  based on the inputt state
+    }
+
+    
     return (
         <>
             <div className="">
@@ -50,14 +45,16 @@ function SearchBar() {
                 <button onclick={searchStock} className="btn btn-primary btn-lg"> Search </button>
             </div>
 
-            {/* <div className="">
-                <ul>
-                    <li className="">{suggArray[0].symbol}</li>
-                    <li className="">{suggArray[1].symbol}</li>
-                    <li className="">{suggArray[2].symbol}</li>
-                    <li className="">{suggArray[3].symbol}</li>
-                </ul>
-            </div> */}
+
+            <ul>
+                {
+                    suggArray.map((obj) => {
+                        return (
+                            <button className="flex w-full" > {obj["2. name"]} </button>
+                        )
+                    })
+                }
+            </ul>
 
         </>
     )
