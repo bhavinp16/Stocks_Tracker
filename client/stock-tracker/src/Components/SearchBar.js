@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 // to add search bar suggestions and make api calls on submit
@@ -34,30 +34,38 @@ function SearchBar() {
                     // always executed
                 });
         }
-
-        // here to make the api request and also create stock context to store current stock information  based on the inputt state
     }
 
 
     return (
-        <>
-            <div className="">
-                <input type="text" className=" w-75 p-lg-2 m-lg-5 h-25" placeholder="Enter the stock name you want to search for: " onChange={handleChange} />
-                <button onClick={searchStock} className="btn btn-primary btn-lg"> Search </button>
+        <div className="mt-5 d-flex flex-column w-10">
+            <div className="ml-4 mt-2">
+                <input type="search" className=" w-75 p-lg-2 m-lg-3 h-25 border-gray shadow-sm" placeholder="Enter the stock name you want to search for: " onChange={handleChange} />
+                <button onClick={searchStock} className="btn btn-primary btn-lg shadow-sm"> Search </button>
             </div>
 
+            {
+                suggArray[1] &&
+                <div className="jumbotron d-flex flex-row justify-content-around">
+                    <ul className="overflow-auto">
+                        {
+                            suggArray.map((obj) => {
+                                return (
 
-            <ul>
-                {
-                    suggArray.map((obj) => {
-                        return (
-                            <button className="btn btn-block" > {obj["2. name"]} </button>
-                        )
-                    })
-                }
-            </ul>
+                                    <button className="btn btn-block btn-dark w-full" > {obj["2. name"]} </button>
+                                )
+                            })
+                        }
+                    </ul>
+                    <div>
+                        Hello Bhavin  nsvnsn sv
+                    </div>
+                </div>
+            }
 
-        </>
+            <h4 className="">Stock marketen quote fh sn</h4>
+
+        </div>
     )
 }
 

@@ -8,7 +8,7 @@ function home() {
         <div>
             <Navbar />
             <SearchBar />
-            <HomeBody />
+            {/* <HomeBody /> */}
         </div>
     )
 }
