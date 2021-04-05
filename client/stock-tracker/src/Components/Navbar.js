@@ -15,7 +15,7 @@ function Navbar() {
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <Link to="/home" className="navbar-brand">Stocks Tracker </Link>
                 <ul class="navbar-nav mr-auto ml-5">
-                    <li class="nav-item active px-3">
+                    <li class="nav-item px-3">
                         <Link to="/home" className="nav-link"> Home </Link>
                     </li>
                     <li class="nav-item px-3">

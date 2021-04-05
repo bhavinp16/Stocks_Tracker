@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // to add search bar suggestions and make api calls on submit
@@ -16,7 +17,6 @@ function SearchBar() {
 
     const searchStock = (e) => {
         e.preventDefault();
-        console.log("hello")
         if (inputt.length !== 0) {
             //here to create an api key to make the req and display the json data
             axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=${apikey}`)
@@ -49,10 +49,9 @@ function SearchBar() {
                 <div className="jumbotron d-flex flex-row justify-content-around">
                     <ul className="overflow-auto">
                         {
-                            suggArray.map((obj) => {
+                            suggArray.map((obj, key) => {
                                 return (
-
-                                    <button className="btn btn-block btn-dark w-full" > {obj["2. name"]} </button>
+                                    <Link to={`/stock/${obj["1. symbol"]}`} className="btn btn-block btn-dark w-full" > {obj["2. name"]} </Link>
                                 )
                             })
                         }
@@ -64,14 +63,6 @@ function SearchBar() {
                     </h1>
                 </div>
             }
-
-            <div className="mx-lg-5 ">
-                <h6 className="ml-lg-5">In the short run, the market is a voting machine, but in long run its a weighing machine.
-            <br />
-                    <h6 className="d-flex flex-row-reverse mr-lg-5">-Benjamin Graham</h6>
-                </h6>
-            </div>
-
 
         </div>
     )

@@ -7,6 +7,7 @@ import Signup from './Pages/Signup';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; // importing bootstrap 
 import Aboutus from './Pages/Aboutus';
 import MyPortfolio from './Pages/MyPortfolio';
+import StockDetail from './Pages/StockDetail';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                   <Route path="/home" component={home} />
                   <Route path="/aboutus" component={Aboutus} />
                   <Route path="/myPortfolio" component={MyPortfolio} />
+                  <Route path="/stock/:name" component={StockDetail} />
                 </>
               )}
           </Switch>
