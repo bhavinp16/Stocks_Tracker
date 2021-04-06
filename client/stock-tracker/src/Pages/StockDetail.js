@@ -34,7 +34,7 @@ function StockDetail(props) {
         <div >
             <Navbar />
             <SearchBar />
-
+            <h2 className="ml-5">Stock Details :</h2>
             {/* display stock details */}
             <div className="jumbotron container m-5" style={{ color: "grey", fontSize: "20px", }}>
                 <b>Stock :&nbsp;&nbsp;</b> {GeneralData && GeneralData["01. symbol"]}
@@ -57,6 +57,8 @@ function StockDetail(props) {
                 <br />
                 <b>Change Percent :&nbsp;&nbsp;</b> {GeneralData && GeneralData["10. change percent"]}
             </div>
+            <br/>
+            <button className="btn btn-block btn-dark w-75 ml-5">Add to portfolio</button>
         </div>
     )
 }
