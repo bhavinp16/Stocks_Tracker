@@ -30,12 +30,17 @@ function StockDetail(props) {
             console.error(error);
         });
 
+    
+    //make api call to fetch historical data about the stock
+    
+    
+
     return (
         <div >
             <Navbar />
             <SearchBar />
             <h2 className="ml-5">Stock Details :</h2>
-            {/* display stock details */}
+            {/* Basic stock details */}
             <div className="jumbotron container m-5" style={{ color: "grey", fontSize: "20px", }}>
                 <b>Stock :&nbsp;&nbsp;</b> {GeneralData && GeneralData["01. symbol"]}
                 <br />
@@ -57,7 +62,11 @@ function StockDetail(props) {
                 <br />
                 <b>Change Percent :&nbsp;&nbsp;</b> {GeneralData && GeneralData["10. change percent"]}
             </div>
-            <br/>
+            <br />
+
+            {/* Historical data component here */}
+       
+
             <button className="btn btn-block btn-dark w-75 ml-5">Add to portfolio</button>
         </div>
     )

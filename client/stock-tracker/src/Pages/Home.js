@@ -1,6 +1,8 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
 import SearchBar from '../Components/SearchBar'
+import Stock from '../Components/Stock'
+
 
 function home() {
     return (
@@ -14,7 +16,7 @@ function home() {
                     <h6 className="d-flex flex-row-reverse mr-lg-5">-Benjamin Graham</h6>
                 </h6>
             </div>
-
+            <Stock />
         </div>
     )
 }
