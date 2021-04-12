@@ -6,17 +6,18 @@ const app = express();
 const cors = require('cors');
 app.use(cors);
 
-
-const register = require('./routes/register');
-const auth = require('./routes/auth');
-
+// connect the database
 connectDB();
 
-app.use('/register', register);
-app.use('/login', auth);
+//init  middleware
+app.use(express.json({ extended: false }));
 
-const PORT = process.env.PORT || 8000;
+//Define Routes
+app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
 
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+
