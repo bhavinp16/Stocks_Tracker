@@ -1,8 +1,5 @@
 const { User, validate } = require('../models/user');
 const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
-const express = require('express');
-const router = express.Router();
 
 router.post('/', async (req, res) => {
 
@@ -24,19 +21,18 @@ router.post('/', async (req, res) => {
             password: req.body.password,
             password2: req.body.password2
         })
-        console.log("added");
+
         const salt = await bcrypt.genSalt(10);
         new_user.password = await bcrypt.hash(new_user.password, salt);
 
         const validPassword = await bcrypt.compare(new_user.password2, new_user.password);
-        if (!validPassword) return res.status(400).send('please enter same password.');
+        if (!validPassword) return res.status(400).send('Please enter same password');
 
         const salt_new = await bcrypt.genSalt(10);
         new_user.password2 = await bcrypt.hash(new_user.password2, salt_new);
 
         await new_user.save();
-        console.log("user added successfully");
-        new_user
+        console.log("User added successfully");
         res.redirect('/');
     }
     catch {
