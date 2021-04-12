@@ -1,54 +1,23 @@
 const mongoose = require('mongoose');
-const Joi = require('joi');
 
-const userSchema = new mongoose.Schema({
-    Name: {
+const UserSchema = mongoose.Schema({
+    name: {
         type: String,
-        minlength: 3,
-        maxlength: 50,
-        required: true
+        required: true,
     },
     email: {
         type: String,
+        required: true,
         unique: true,
-        minlength: 3,
-        maxlength: 50,
-        required: true
     },
     password: {
-        type: String,             
-        minlength: 3,
-        maxlength: 1024,
-        required: true
+        type: String,
+        required: true,
     },
-    password2: {
-        type: String,             
-        minlength: 3,
-        maxlength: 1024,
-        required: true
-    },
-    number: {
-        type: String, 
-        unique: true,            
-        minlength: 10,
-        maxlength: 10,
-        required: true
+    date: {
+        type: Date,
+        default: Date.now,
     },
 });
 
-const User = mongoose.model('User', userSchema);
-
-function validateUser(user) {
-    const schema = {
-        Name: Joi.string().min(3).max(50).required(),
-        email: Joi.string().min(3).max(50).required().email(),
-        password: Joi.string().min(3).max(255).required(),
-        password2: Joi.string().min(3).max(255).required(),
-        number: Joi.string().min(10).max(10).required(),
-    };
-
-    return Joi.validate(user, schema);
-}
-
-exports.User = User;
-exports.validate = validateUser;
+module.exports = mongoose.model('User', UserSchema);
