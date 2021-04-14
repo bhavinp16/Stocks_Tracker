@@ -6,7 +6,7 @@ import setAuthToken from '../utils/setAuthToken';
 
 function Login() {
     const context = useContext(usercontext)
-    const { user, setuser } = context
+    const { setuser } = context
 
     const initialState = {
         email: "",

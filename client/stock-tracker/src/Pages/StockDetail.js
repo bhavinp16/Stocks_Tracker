@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Navbar from '../Components/Navbar';
 import SearchBar from '../Components/SearchBar';
-import axios from 'axios'
+import axios from 'axios';
+import Stock from '../Components/Stock';
 
 function StockDetail(props) {
 
@@ -30,10 +31,10 @@ function StockDetail(props) {
             console.error(error);
         });
 
-    
+
     //make api call to fetch historical data about the stock
-    
-    
+
+
 
     return (
         <div >
@@ -65,7 +66,7 @@ function StockDetail(props) {
             <br />
 
             {/* Historical data component here */}
-       
+            <Stock />
 
             <button className="btn btn-block btn-dark w-75 ml-5">Add to portfolio</button>
         </div>

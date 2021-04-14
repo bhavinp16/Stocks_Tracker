@@ -16,7 +16,6 @@ function home() {
                     <h6 className="d-flex flex-row-reverse mr-lg-5">-Benjamin Graham</h6>
                 </h6>
             </div>
-            <Stock />
         </div>
     )
 }
