@@ -29,7 +29,6 @@ function Signup() {
             const res = await axios.get('http://localhost:5000/api/auth/');
             console.log("Signed In");
             setuser(res.data);
-            console.log(user);
         } catch (err) {
             console.log(err);
         }
@@ -45,7 +44,6 @@ function Signup() {
         };
         try {
             const res = await axios.post("http://localhost:5000/api/users/", JSON.stringify(formdata), config);
-            console.log(res);
             localStorage.setItem('token', res.data.token);
             loadUser();
         } catch (err) {

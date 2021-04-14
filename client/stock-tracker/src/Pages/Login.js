@@ -29,7 +29,6 @@ function Login() {
             const res = await axios.get('http://localhost:5000/api/auth/');
             console.log("Logged In");
             setuser(res.data);
-            console.log(user);
         } catch (err) {
             console.log(err);
         }
