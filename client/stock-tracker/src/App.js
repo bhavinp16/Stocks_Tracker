@@ -4,7 +4,7 @@ import usercontext from './Context/User/usercontext';
 import home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; // importing bootstrap 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; 
 import Aboutus from './Pages/Aboutus';
 import MyPortfolio from './Pages/MyPortfolio';
 import StockDetail from './Pages/StockDetail';
@@ -13,7 +13,7 @@ import StockDetail from './Pages/StockDetail';
 function App() {
 
   const context = useContext(usercontext)
-  const { user, setuser } = context;
+  const { user } = context;
 
   return (
     <Fragment>

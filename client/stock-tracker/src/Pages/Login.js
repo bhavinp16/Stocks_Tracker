@@ -1,14 +1,12 @@
-import React, { useState, useContext, Fragment } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import usercontext from '../Context/User/usercontext'
-
+import axios from 'axios'
+import setAuthToken from '../utils/setAuthToken';
 
 function Login() {
     const context = useContext(usercontext)
     const { user, setuser } = context
-
-    // currently setting users to some value to edit the home page
-    setuser({ name: "Bhavin", email: "bhavinp16@gmail.com" });
 
     const initialState = {
         email: "",
@@ -23,13 +21,40 @@ function Login() {
         })
     }
 
-    const logind = (e) => {
+
+    // Load User
+    const loadUser = async () => {
+        setAuthToken(localStorage.token);
+        try {
+            const res = await axios.get('http://localhost:5000/api/auth/');
+            console.log("Logged In");
+            setuser(res.data);
+            console.log(user);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+    const logind = async (e) => {
         e.preventDefault();
-        //database stuff here 
+        // Login User
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        try {
+            const res = await axios.post("http://localhost:5000/api/auth/", JSON.stringify(formdata), config);
+            localStorage.setItem('token', res.data.token);
+            loadUser();
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
-        <Fragment className="outer">
+        <div className="outer">
             <form className="inner container mt-5 ">
 
                 <h3>Log in</h3>
@@ -51,12 +76,12 @@ function Login() {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={logind}>Sign in</button>
+                <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={logind}>Log in</button>
                 <Link to="/signup" className="btn btn-light btn-md btn-block">Create an account
                 </Link>
             </form>
 
-        </Fragment>
+        </div>
     )
 }
 
