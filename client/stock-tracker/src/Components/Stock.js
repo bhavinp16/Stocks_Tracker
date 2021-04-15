@@ -153,8 +153,7 @@ class Stock extends React.Component {
     return (
       <div className="container">
 
-        <br /><br />
-        <h1>Stock Symbol: {stockSymbol} </h1>
+        <h1 className="m-2">Stock Symbol: {stockSymbol} </h1>
 
         <AsyncSelect
           cacheOptions
@@ -253,6 +252,10 @@ class Stock extends React.Component {
             }
           }
         />
+
+        <div className="d-flex justify-content-center w-100">
+          <button className="btn btn-block btn-dark w-75 mb-3">Add to portfolio</button>
+        </div>
 
       </div>
 

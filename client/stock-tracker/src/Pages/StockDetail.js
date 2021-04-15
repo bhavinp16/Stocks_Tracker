@@ -43,7 +43,7 @@ function StockDetail(props) {
             <div className="d-flex flex-row">
                 {/* Basic stock details */}
                 <div className="jumbotron container w-25" style={{ color: "grey", fontSize: "20px" }}>
-                    <h2 className="ml-5 mb-3">Stock Details :</h2>
+                    <h2 className="ml-5 mb-4 text-dark">Stock Details :</h2>
                     <b>Stock :&nbsp;&nbsp;</b> {GeneralData && GeneralData["01. symbol"]}
                     <br />
                     <b>Open :&nbsp;&nbsp;</b> {GeneralData && GeneralData["02. open"]}
@@ -63,7 +63,11 @@ function StockDetail(props) {
                     <b>Change :&nbsp;&nbsp;</b> {GeneralData && GeneralData["09. change"]}
                     <br />
                     <b>Change Percent :&nbsp;&nbsp;</b> {GeneralData && GeneralData["10. change percent"]}
-                    <button className="mt-3 btn btn-dark">Add to Portfolio</button>
+
+                    <div className="d-flex justify-content-center m-2">
+                        <button className="mt-4 btn btn-dark w-75">Add to Portfolio</button>
+                    </div>
+
                 </div>
                 <br />
 
@@ -71,9 +75,6 @@ function StockDetail(props) {
                 <Stock stocksymbol={stocksymbol} />
             </div>
 
-            <div className="d-flex justify-content-center w-100">
-                <button className="btn btn-block btn-dark w-75 mb-3">Add to portfolio</button>
-            </div>
         </div>
     )
 }
