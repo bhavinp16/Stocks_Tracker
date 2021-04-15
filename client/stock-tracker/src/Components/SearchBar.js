@@ -38,8 +38,8 @@ function SearchBar() {
 
 
     return (
-        <div className="mt-5 d-flex flex-column w-10">
-            <div className="ml-4 mt-2 input-group w-75">
+        <div className="mt-5 d-flex flex-column w-100">
+            <div className="ml-5 mt-2 input-group w-75">
                 <input type="search" className="p-lg-2 m-lg-3 h-25 form-control" placeholder="Enter the stock name you want to search for: " onChange={handleChange} />
                 <button onClick={searchStock} className="btn btn-primary btn-lg shadow-sm m-lg-3"> Search </button>
             </div>

@@ -43,7 +43,7 @@ function StockDetail(props) {
             <div className="d-flex flex-row">
                 {/* Basic stock details */}
                 <div className="jumbotron container w-25" style={{ color: "grey", fontSize: "20px" }}>
-                    <h2 className="ml-5 mb-4 text-dark">Stock Details :</h2>
+                    <h2 className="ml-5 mb-4 text-dark">Stock Details </h2>
                     <b>Stock :&nbsp;&nbsp;</b> {GeneralData && GeneralData["01. symbol"]}
                     <br />
                     <b>Open :&nbsp;&nbsp;</b> {GeneralData && GeneralData["02. open"]}

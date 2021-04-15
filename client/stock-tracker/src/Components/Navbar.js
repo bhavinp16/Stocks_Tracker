@@ -4,7 +4,7 @@ import usercontext from '../Context/User/usercontext'
 
 function Navbar() {
     const context = useContext(usercontext);
-    const { user, setuser } = context;
+    const { setuser } = context;
 
     const signout = () => {
         setuser(null);

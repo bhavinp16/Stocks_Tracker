@@ -1,44 +1,8 @@
 import React from 'react';
-import AsyncSelect from 'react-select/async';
 
 import Plotly from "plotly.js-basic-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
 const Plot = createPlotlyComponent(Plotly);
-
-const dot = (color = '#ccc') => ({
-  alignItems: 'center',
-  display: 'flex',
-
-  ':before': {
-    backgroundColor: color,
-    borderRadius: 10,
-    content: '" "',
-    display: 'block',
-    marginRight: 8,
-    height: 10,
-    width: 10,
-  },
-});
-
-const styles = {
-  input: styles => ({ ...styles, ...dot() }),
-  placeholder: styles => ({ ...styles, ...dot() }),
-  control: styles => ({
-    ...styles,
-    width: '50%',
-    margin: '0 auto'
-  }),
-  option: styles => ({
-    ...styles,
-    // borderBottom: '1px dotted black',
-    margin: '0 auto'
-  }),
-  menu: styles => ({
-    ...styles,
-    margin: '0 auto'
-  })
-}
-
 
 class Stock extends React.Component {
 
@@ -58,43 +22,6 @@ class Stock extends React.Component {
   componentDidMount() {
     this.fetchStock();
   }
-
-  onChange = async (selectedStockSymbol) => {
-    this.setState({
-      stockSymbol: selectedStockSymbol.value
-    }, () => this.fetchStock(this.state.stockSymbol));
-  }
-
-
-  // loadOptions = async (inputText, callBack) => {
-  //   const API_KEY = '2XV1NPZO5YB5S320';
-  //   let SEARCH_API = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputText}&apikey=${API_KEY}`;
-  //   this.setState({
-  //     API: SEARCH_API
-  //   })
-
-  //   let arr = [];
-
-  //   await fetch(SEARCH_API)
-  //     .then(
-  //       function (response) {
-  //         return response.json();
-  //       }
-  //     )
-  //     .then(
-  //       function (data) {
-  //         for (var key in data['bestMatches']) {
-  //           let name = data['bestMatches'][key]['2. name'];
-  //           let symbol = data['bestMatches'][key]['1. symbol'];
-  //           arr.push({
-  //             label: '(' + symbol + ') ' + name,
-  //             value: symbol
-  //           })
-  //         }
-  //       }
-  //     )
-  //   callBack(arr);
-  // }
 
   fetchStock = async () => {
     const pointerToThis = this;
@@ -139,13 +66,6 @@ class Stock extends React.Component {
     this.render();
   }
 
-  handleInputChange = async (event) => {
-    this.setState({
-      stockSymbol: event.target.value
-    })
-    this.fetchStock(this.state.stockSymbol);
-  }
-
   render() {
 
     const { stockSymbol } = this.state;
@@ -154,25 +74,6 @@ class Stock extends React.Component {
       <div className="container">
 
         <h1 className="m-2">Stock Symbol: {stockSymbol} </h1>
-
-        <AsyncSelect
-          cacheOptions
-          maxMenuHeight={200}
-          onChange={this.onChange}
-          value={this.state.stockSymbol}
-          placeholder={'Stock Symbol (e.g. AMZN)'}
-          theme={theme => ({
-            ...theme,
-            borderRadius: 2,
-            colors: {
-              ...theme.colors,
-              primary25: 'lightblue',
-              primary: 'black',
-            },
-          })}
-          styles={styles}
-          loadOptions={this.loadOptions}
-        />
 
         <Plot
           useResizeHandler={true}
