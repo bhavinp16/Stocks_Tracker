@@ -40,35 +40,40 @@ function StockDetail(props) {
         <div >
             <Navbar />
             <SearchBar />
-            <h2 className="ml-5">Stock Details :</h2>
-            {/* Basic stock details */}
-            <div className="jumbotron container m-5" style={{ color: "grey", fontSize: "20px", }}>
-                <b>Stock :&nbsp;&nbsp;</b> {GeneralData && GeneralData["01. symbol"]}
+            <div className="d-flex flex-row">
+                {/* Basic stock details */}
+                <div className="jumbotron container w-25" style={{ color: "grey", fontSize: "20px" }}>
+                    <h2 className="ml-5 mb-3">Stock Details :</h2>
+                    <b>Stock :&nbsp;&nbsp;</b> {GeneralData && GeneralData["01. symbol"]}
+                    <br />
+                    <b>Open :&nbsp;&nbsp;</b> {GeneralData && GeneralData["02. open"]}
+                    <br />
+                    <b>High :&nbsp;&nbsp;</b> {GeneralData && GeneralData["03. high"]}
+                    <br />
+                    <b>Low :&nbsp;&nbsp;</b> {GeneralData && GeneralData["04. low"]}
+                    <br />
+                    <b>Price :&nbsp;&nbsp;</b> {GeneralData && GeneralData["05. price"]}
+                    <br />
+                    <b>Volume : &nbsp;&nbsp;</b>  {GeneralData && GeneralData["06. volume"]}
+                    <br />
+                    <b>Latest Trading Day :&nbsp;&nbsp;</b> {GeneralData && GeneralData["07. latest trading day"]}
+                    <br />
+                    <b>Previous Close :&nbsp;&nbsp;</b> {GeneralData && GeneralData["08. previous close"]}
+                    <br />
+                    <b>Change :&nbsp;&nbsp;</b> {GeneralData && GeneralData["09. change"]}
+                    <br />
+                    <b>Change Percent :&nbsp;&nbsp;</b> {GeneralData && GeneralData["10. change percent"]}
+                    <button className="mt-3 btn btn-dark">Add to Portfolio</button>
+                </div>
                 <br />
-                <b>Open :&nbsp;&nbsp;</b> {GeneralData && GeneralData["02. open"]}
-                <br />
-                <b>High :&nbsp;&nbsp;</b> {GeneralData && GeneralData["03. high"]}
-                <br />
-                <b>Low :&nbsp;&nbsp;</b> {GeneralData && GeneralData["04. low"]}
-                <br />
-                <b>Price :&nbsp;&nbsp;</b> {GeneralData && GeneralData["05. price"]}
-                <br />
-                <b>Volume : &nbsp;&nbsp;</b>  {GeneralData && GeneralData["06. volume"]}
-                <br />
-                <b>Latest Trading Day :&nbsp;&nbsp;</b> {GeneralData && GeneralData["07. latest trading day"]}
-                <br />
-                <b>Previous Close :&nbsp;&nbsp;</b> {GeneralData && GeneralData["08. previous close"]}
-                <br />
-                <b>Change :&nbsp;&nbsp;</b> {GeneralData && GeneralData["09. change"]}
-                <br />
-                <b>Change Percent :&nbsp;&nbsp;</b> {GeneralData && GeneralData["10. change percent"]}
+
+                {/* Graph of Historical Data */}
+                <Stock stocksymbol={stocksymbol} />
             </div>
-            <br />
 
-            {/* Historical data component here */}
-            <Stock />
-
-            <button className="btn btn-block btn-dark w-75 ml-5">Add to portfolio</button>
+            <div className="d-flex justify-content-center w-100">
+                <button className="btn btn-block btn-dark w-75 mb-3">Add to portfolio</button>
+            </div>
         </div>
     )
 }

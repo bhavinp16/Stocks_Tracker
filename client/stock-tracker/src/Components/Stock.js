@@ -49,13 +49,14 @@ class Stock extends React.Component {
       stockChartOpenValues: [],
       stockChartLowValues: [],
       stockChartHighValues: [],
-      stockSymbol: '',
-      API: ''
+      stockSymbol: this.props.stocksymbol,
+      API: '',
     }
     this.stockSymbolRef = React.createRef();
   }
 
   componentDidMount() {
+    this.fetchStock();
   }
 
   onChange = async (selectedStockSymbol) => {
@@ -65,50 +66,43 @@ class Stock extends React.Component {
   }
 
 
-  loadOptions = async (inputText, callBack) => {
-    const API_KEY = '2XV1NPZO5YB5S320';
-    let SEARCH_API = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputText}&apikey=${API_KEY}`;
-    this.setState({
-      API: SEARCH_API
-    })
-    /*
-     * Use the following url to view the output of the response
-     * https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=ACN&apikey=2XV1NPZO5YB5S320
-     */
-    let arr = [];
+  // loadOptions = async (inputText, callBack) => {
+  //   const API_KEY = '2XV1NPZO5YB5S320';
+  //   let SEARCH_API = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputText}&apikey=${API_KEY}`;
+  //   this.setState({
+  //     API: SEARCH_API
+  //   })
 
-    await fetch(SEARCH_API)
-      .then(
-        function (response) {
-          return response.json();
-        }
-      )
-      .then(
-        function (data) {
-          for (var key in data['bestMatches']) {
-            let name = data['bestMatches'][key]['2. name'];
-            let symbol = data['bestMatches'][key]['1. symbol'];
-            arr.push({
-              label: '(' + symbol + ') ' + name,
-              value: symbol
-            })
-          }
-        }
-      )
-    callBack(arr);
-  }
+  //   let arr = [];
 
-  fetchStock = async (StockSymbol) => {
+  //   await fetch(SEARCH_API)
+  //     .then(
+  //       function (response) {
+  //         return response.json();
+  //       }
+  //     )
+  //     .then(
+  //       function (data) {
+  //         for (var key in data['bestMatches']) {
+  //           let name = data['bestMatches'][key]['2. name'];
+  //           let symbol = data['bestMatches'][key]['1. symbol'];
+  //           arr.push({
+  //             label: '(' + symbol + ') ' + name,
+  //             value: symbol
+  //           })
+  //         }
+  //       }
+  //     )
+  //   callBack(arr);
+  // }
+
+  fetchStock = async () => {
     const pointerToThis = this;
-    const API_KEY = 'HGJWFG4N8AQ66ICD';
+    const API_KEY = '9KZFAE9XUH9ZQ1PF';
     let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stockSymbol}&outputsize=full&apikey=${API_KEY}`;
     this.setState({
       API: API_Call
     })
-    /*
-     * Use the following url to view the output of the response
-     * https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=AAPL&outputsize=compact&apikey=HGJWFG4N8AQ66ICD
-     */
 
     let stockChartXValuesFunction = [];
     let stockChartOpenValuesFunction = [];
@@ -157,7 +151,7 @@ class Stock extends React.Component {
     const { stockSymbol } = this.state;
 
     return (
-      <div className="stocks-body">
+      <div className="container">
 
         <br /><br />
         <h1>Stock Symbol: {stockSymbol} </h1>
