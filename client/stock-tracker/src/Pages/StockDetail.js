@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar';
 import SearchBar from '../Components/SearchBar';
-import axios from 'axios';
 import Stock from '../Components/Stock';
+import axios from 'axios';
 
 function StockDetail(props) {
 
@@ -13,26 +13,42 @@ function StockDetail(props) {
 
     // make api call to fetch the stock details
     //rapidapi key used
-    const options = {
-        method: 'GET',
-        url: 'https://alpha-vantage.p.rapidapi.com/query',
-        params: { function: 'GLOBAL_QUOTE', symbol: `${stocksymbol}` },
-        headers: {
-            'x-rapidapi-key': 'd6bd8362c3msh180930e5c56b072p1ca825jsn731ccf821720',
-            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+
+    useEffect(() => {
+        fetch(`https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${stocksymbol}`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "d6bd8362c3msh180930e5c56b072p1ca825jsn731ccf821720",
+                "x-rapidapi-host": "alpha-vantage.p.rapidapi.com"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setGeneralData(data["Global Quote"]);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, [stocksymbol]);
+
+
+    const addStock = async () => {
+        const stock = {
+            symbol: stocksymbol
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        try {
+            const res = await axios.post('http://localhost:5000/api/stocks/', JSON.stringify(stock), config);
+            console.log(res);
+        } catch (err) {
+            console.log(err);
         }
     };
-
-    axios.request(options)
-        .then(function (response) {
-            setGeneralData(response.data["Global Quote"]);
-            console.log(GeneralData);
-        }).catch(function (error) {
-            console.error(error);
-        });
-
-
-    //make api call to fetch historical data about the stock
 
 
 
@@ -65,7 +81,7 @@ function StockDetail(props) {
                     <b>Change Percent :&nbsp;&nbsp;</b> {GeneralData && GeneralData["10. change percent"]}
 
                     <div className="d-flex justify-content-center m-2">
-                        <button className="mt-4 btn btn-dark w-75">Add to Portfolio</button>
+                        <button className="mt-4 btn btn-dark w-75" onClick={addStock} >Add to Portfolio</button>
                     </div>
 
                 </div>

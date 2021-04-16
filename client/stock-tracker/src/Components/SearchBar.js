@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 // to add search bar suggestions and make api calls on submit
 
@@ -18,20 +17,18 @@ function SearchBar() {
     const searchStock = (e) => {
         e.preventDefault();
         if (inputt.length !== 0) {
-            //here to create an api key to make the req and display the json data
-            axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=${apikey}`)
-                .then(function (response) {
+
+            //get search endpoints
+            fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=${apikey}`)
+                .then(response => response.json())
+                .then(data => {
                     // handle success
-                    const bestMatches = response.data.bestMatches;
+                    const bestMatches = data.bestMatches;
                     setsuggArray(bestMatches);
-                    console.log(suggArray);
                 })
                 .catch(function (error) {
                     // handle error
                     console.log(error);
-                })
-                .then(function () {
-                    // always executed
                 });
         }
     }

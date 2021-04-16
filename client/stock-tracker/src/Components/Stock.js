@@ -52,8 +52,6 @@ class Stock extends React.Component {
             stockChartLowValuesFunction.push(data['Time Series (Daily)'][key]['3. low']);
           }
 
-          console.log(stockChartXValuesFunction);
-
           pointerToThis.setState({
             stockChartXValues: stockChartXValuesFunction,
             stockChartOpenValues: stockChartOpenValuesFunction,

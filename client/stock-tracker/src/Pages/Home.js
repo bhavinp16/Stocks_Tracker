@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Navbar from '../Components/Navbar'
 import SearchBar from '../Components/SearchBar'
-import axios from 'axios'
 
 function Home() {
-
-    useEffect(() => {
-        delete axios.defaults.headers.common['x-auth-token']
-    });
 
     return (
         <div>
