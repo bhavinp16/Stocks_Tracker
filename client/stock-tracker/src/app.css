@@ -11,3 +11,12 @@
 .navbar-dark {
 	background-color: #02233a !important;
 }
+
+.btn-light,
+.btn-light:active {
+	background-color: #e6f1ff !important;
+}
+
+.btn-light:hover {
+	background-color: #c1dcfe !important;
+}

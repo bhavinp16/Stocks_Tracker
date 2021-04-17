@@ -20,24 +20,49 @@ function MyPortfolio() {
         }
     };
 
+    const deleteStock = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5000/api/stocks/${id}`);
+            getStock();
+            alert("Stock Removed From Your Portfolio");
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <>
             <Navbar />
-            <div className="container mt-5">
-                <div className="container mt-lg-5">
-                    <h4 className="text-bold">Current Stock Prices of Stocks in users Portfolio displayed</h4>
-                    {!mystocks
-                        ? <h4 className="text-bold bold"> NO STOCKS ADDED TO YOUR PORTFOLIO </h4>
+            <div className="d-flex">
+                <div className="container mt-lg-5 mr-5 overflow-scroll">
+                    <h7 className="mt-5">.</h7>
+                    {!mystocks?.[0]
+                        ? <h3 className="text-bold bold"> NO STOCKS ADDED TO YOUR PORTFOLIO </h3>
                         :
                         (
-                            mystocks.map((stock) => {
-                                return (
-                                    <Link to={`/stock/${stock.symbol}`} className="btn btn-block btn-dark w-75 m-3" > {stock.symbol}</Link>
-                                )
-                            })
+                            <>
+                                <h3 className="font-weight-light">Users portfolio</h3>
+                                {mystocks.map((stock) => {
+                                    return (
+                                        <Link to={`/stock/${stock.symbol}`} className="btn btn-block btn-light w-100 m-3" >
+                                            <div className="d-flex justify-content-between align-content-center mx-2">
+                                                {stock.symbol}
+                                                <button type="button" className="close" aria-label="Close" onClick={(e) => {
+                                                    e.preventDefault();
+                                                    deleteStock(stock._id)
+                                                }
+                                                }>
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </Link>
+                                    )
+                                })}
+                            </>
                         )
                     }
                 </div>
+                <img src={process.env.PUBLIC_URL + "/homeimgg.png"} alt="#" className="" width="800" height="791" />
             </div>
         </>
     )

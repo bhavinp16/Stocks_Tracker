@@ -67,7 +67,7 @@ class Stock extends React.Component {
   render() {
     
     return (
-      <div className="mt-2 d-flex justify-content-center container">
+      <div className="mt-5 d-flex justify-content-center container">
         <Plot
           useResizeHandler={true}
           data={[

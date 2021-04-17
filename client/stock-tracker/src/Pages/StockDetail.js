@@ -41,14 +41,12 @@ function StockDetail(props) {
             }
         };
         try {
-            const res = await axios.post('http://localhost:5000/api/stocks/', JSON.stringify(stock), config);
-            console.log(res);
+            await axios.post('http://localhost:5000/api/stocks/', JSON.stringify(stock), config);
+            alert("Stock Successfully Added To Your Portfolio");
         } catch (err) {
             console.log(err);
         }
     };
-
-
 
     return (
         <div >
@@ -88,11 +86,6 @@ function StockDetail(props) {
                 {/* Graph of Historical Data */}
                 <Stock stocksymbol={stocksymbol} />
 
-            </div>
-
-            <div className="d-flex justify-content-between font-italic font-weight-lighter p-1 mt-1">
-                <h6 className="ml-lg-5">In the short run, the market is a voting machine, but in long run its a weighing machine.</h6>
-                <h6 className="mr-lg-5">-Benjamin Graham</h6>
             </div>
         </div>
     )
