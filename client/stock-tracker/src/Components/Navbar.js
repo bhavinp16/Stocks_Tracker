@@ -12,7 +12,7 @@ function Navbar() {
 
     return (
         <div className="">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
                 <Link to="/home" className="navbar-brand">Stocks Tracker </Link>
                 <ul class="navbar-nav mr-auto ml-5">
                     <li class="nav-item px-3">

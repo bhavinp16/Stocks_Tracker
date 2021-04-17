@@ -1,0 +1,13 @@
+.btn-dark,
+.btn-dark:active {
+	background-color: #003152 !important;
+}
+
+.btn-dark:hover,
+.btn-dark:visited {
+	background-color: #02233a !important;
+}
+
+.navbar-dark {
+	background-color: #02233a !important;
+}

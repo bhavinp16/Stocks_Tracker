@@ -65,14 +65,9 @@ class Stock extends React.Component {
   }
 
   render() {
-
-    const { stockSymbol } = this.state;
-
+    
     return (
-      <div className="container">
-
-        <h1 className="m-2">Stock Symbol: {stockSymbol} </h1>
-
+      <div className="mt-2 d-flex justify-content-center container">
         <Plot
           useResizeHandler={true}
           data={[
@@ -90,7 +85,7 @@ class Stock extends React.Component {
               y: this.state.stockChartHighValues,
               type: 'scatter',
               mode: 'lines',
-              marker: { color: '#6eabbf' },
+              marker: { color: '#02233a' },
             },
             {
               name: this.state.stockSymbol + ' Low',
@@ -151,13 +146,7 @@ class Stock extends React.Component {
             }
           }
         />
-
-        <div className="d-flex justify-content-center w-100">
-          <button className="btn btn-block btn-dark w-75 mb-3">Add to portfolio</button>
-        </div>
-
       </div>
-
     )
   }
 

@@ -53,29 +53,36 @@ function Signup() {
 
     return (
         <>
-            <form className="container mt-5">
-                <h3>Register</h3>
+            <div className="d-flex">
 
-                <div className="form-group">
-                    <label>Name</label>
-                    <input type="text" className="form-control" name="name" placeholder="Name" onChange={handlechange} />
-                </div>
+                <img src={process.env.PUBLIC_URL + "/loginimg.jpg"} alt="#" className="" width="1000" height="791" />
 
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" className="form-control" name="email" placeholder="Enter email" onChange={handlechange} />
-                </div>
+                <form className="container mt-5 mx-2">
+                    <h1 style={{ color: "#003152" }} className=" font-weight-normal text-capitalize font-weight-lighter">Stocks Tracker</h1>
+                    <br />
+                    <br />
+                    <h3 className="font-weight-lighter">SignUP</h3>
 
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" name="password" placeholder="Enter password" onChange={handlechange} />
-                </div>
+                    <div className="form-group mt-4">
+                        <label>Name</label>
+                        <input type="text" className="form-control" name="name" placeholder="Name" onChange={handlechange} />
+                    </div>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={signupsubmit}>Register</button>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input type="email" className="form-control" name="email" placeholder="Enter email" onChange={handlechange} />
+                    </div>
 
-                <Link to="/login" className="btn btn-light btn-md btn-block">Already have an account</Link>
-            </form>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input type="password" className="form-control" name="password" placeholder="Enter password" onChange={handlechange} />
+                    </div>
 
+                    <button type="submit" className="btn btn-dark btn-lg btn-block mt-4" onClick={signupsubmit}>Register</button>
+
+                    <Link to="/login" className="btn btn-light btn-md btn-block">Already have an account</Link>
+                </form>
+            </div>
         </>
     );
 }
