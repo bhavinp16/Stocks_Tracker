@@ -64,7 +64,7 @@ function MyPortfolio() {
                         :
                         (
                             <>
-                                <h3 className="font-weight-bolder">Users portfolio</h3>
+                                <h1 style={{ color: "#003152" }} className=" font-weight-normal text-capitalize font-weight-lighter">USERS PORTFOLIO</h1>
                                 {mystocks.map((stock) => {
                                     return (
                                         <Link to={`/stock/${stock.symbol}`} className="btn btn-block btn-light w-100 m-3" >

@@ -46,6 +46,10 @@ function Signup() {
 
     const signupsubmit = async (e) => {
         e.preventDefault();
+        if (formdata.email === "" | formdata.password === "" | formdata.name === "") {
+            addToast("All Field Are Required!", { appearance: 'error', autoDismiss: true });
+            return;
+        }
         NProgress.start();
         // Register User
         const config = {
