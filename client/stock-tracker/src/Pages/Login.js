@@ -31,6 +31,7 @@ function Login() {
             setuser(res.data);
         } catch (err) {
             console.log(err);
+            alert(err);
         }
     };
 
@@ -49,6 +50,7 @@ function Login() {
             loadUser();
         } catch (err) {
             console.log(err);
+            alert("Invalid Credentials");
         }
     }
 

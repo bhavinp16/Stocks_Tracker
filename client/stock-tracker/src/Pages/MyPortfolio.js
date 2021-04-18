@@ -30,6 +30,16 @@ function MyPortfolio() {
         }
     }
 
+    const getRealtimeData = async (symbol) => {
+        try {
+            const res = await axios.get(`http://localhost:5000/api/search?searchquery=${symbol}%20yahoo`);
+            console.log(res.data);
+            alert(`${symbol}:\n\tPrice:${res.data.price}\n\tChange:${res.data.change}`);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <>
             <Navbar />
@@ -47,13 +57,21 @@ function MyPortfolio() {
                                         <Link to={`/stock/${stock.symbol}`} className="btn btn-block btn-light w-100 m-3" >
                                             <div className="d-flex justify-content-between align-content-center mx-2">
                                                 {stock.symbol}
-                                                <button type="button" className="close" aria-label="Close" onClick={(e) => {
-                                                    e.preventDefault();
-                                                    deleteStock(stock._id)
-                                                }
-                                                }>
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                                <div>
+                                                    <button type="button" className="btn btn-dark mx-5 font-smaller font-weight-lighter" onClick={((e) => {
+                                                        e.preventDefault();
+                                                        getRealtimeData(stock.symbol)
+                                                    })}>
+                                                        Get Realtime Data
+                                                    </button>
+                                                    <button type="button" className="close" aria-label="Close" onClick={(e) => {
+                                                        e.preventDefault();
+                                                        deleteStock(stock._id)
+                                                    }
+                                                    }>
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </Link>
                                     )

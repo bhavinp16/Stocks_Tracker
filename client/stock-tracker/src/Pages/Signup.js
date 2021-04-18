@@ -44,10 +44,14 @@ function Signup() {
         };
         try {
             const res = await axios.post("http://localhost:5000/api/users/", JSON.stringify(formdata), config);
+            if (res.status === 400) {
+                alert(res.data.msg);
+            }
             localStorage.setItem('token', res.data.token);
             loadUser();
         } catch (err) {
             console.log(err);
+            alert("Server Error");
         }
     }
 
