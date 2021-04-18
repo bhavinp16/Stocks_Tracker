@@ -4,8 +4,11 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import NProgress from 'nprogress';
 import './nprogress.css';
+import { useToasts } from 'react-toast-notifications';
 
 function MyPortfolio() {
+
+    const { addToast } = useToasts();
 
     const [mystocks, setmystocks] = useState(null);
 
@@ -27,7 +30,7 @@ function MyPortfolio() {
             await axios.delete(`http://localhost:5000/api/stocks/${id}`);
             getStock();
             NProgress.done();
-            alert("Stock Removed From Your Portfolio");
+            addToast("Stock Removed From Your Portfolio", { appearance: 'error', autoDismiss: true });
         } catch (err) {
             NProgress.done();
             console.log(err);
@@ -38,7 +41,14 @@ function MyPortfolio() {
         try {
             const res = await axios.get(`http://localhost:5000/api/search?searchquery=${symbol}%20yahoo`);
             NProgress.done();
-            alert(`${symbol}:\n\tPrice:${res.data.price}\n\tChange:${res.data.change}`);
+            addToast(<div>
+                <br />
+                <h5>{`${symbol}:`}</h5>
+                <br />
+                <h6>{`======> Price: [ ${res.data.price} ]`}</h6>
+                <br />
+                <h6>{`======> Change: [ ${res.data.change} ] `}</h6>
+            </div>, { appearance: 'success' });
         } catch (err) {
             NProgress.done();
             console.log(err);

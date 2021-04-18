@@ -5,8 +5,12 @@ import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken';
 import NProgress from 'nprogress';
 import './nprogress.css';
+import { useToasts } from 'react-toast-notifications';
 
 function Signup() {
+
+    const { addToast } = useToasts();
+
     const context = useContext(usercontext)
     const { setuser } = context;
 
@@ -32,9 +36,11 @@ function Signup() {
             NProgress.done();
             console.log("Signed In");
             setuser(res.data);
+            addToast("Signed In Successfully", { appearance: 'success', autoDismiss: true });
         } catch (err) {
             console.log(err);
             NProgress.done();
+            addToast({ err }, { appearance: 'error', autoDismiss: true });
         }
     };
 
@@ -50,14 +56,16 @@ function Signup() {
         try {
             const res = await axios.post("http://localhost:5000/api/users/", JSON.stringify(formdata), config);
             if (res.status === 400) {
-                alert(res.data.msg);
+                addToast("User Already Exists", { appearance: 'error', autoDismiss: true });
+            } if (res.status === 500) {
+                addToast("Server Error", { appearance: 'error', autoDismiss: true });
             }
             localStorage.setItem('token', res.data.token);
+            addToast("User Created", { appearance: 'error', autoDismiss: true });
             loadUser();
         } catch (err) {
-            console.log(err);
             NProgress.done();
-            alert("Server Error");
+            addToast({ err }, { appearance: 'error', autoDismiss: true });
         }
     }
 

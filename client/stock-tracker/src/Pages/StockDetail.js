@@ -4,8 +4,11 @@ import Stock from '../Components/Stock';
 import axios from 'axios';
 import NProgress from 'nprogress';
 import './nprogress.css';
+import { useToasts } from 'react-toast-notifications';
 
 function StockDetail(props) {
+
+    const { addToast } = useToasts();
 
     // catch the name of the stock from the url 
     const stocksymbol = props.match.params.name;
@@ -15,7 +18,6 @@ function StockDetail(props) {
     // make api call to fetch the stock details
     // rapidapi key used
     useEffect(() => {
-        NProgress.start();
         fetch(`https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${stocksymbol}`, {
             "method": "GET",
             "headers": {
@@ -26,16 +28,15 @@ function StockDetail(props) {
             .then(response => response.json())
             .then(data => {
                 setGeneralData(data["Global Quote"]);
-                NProgress.done();
             })
             .catch(err => {
                 console.error(err);
-                NProgress.done();
             });
     }, [stocksymbol]);
 
 
     const addStock = async () => {
+        NProgress.start();
         const stock = {
             symbol: stocksymbol
         }
@@ -47,9 +48,11 @@ function StockDetail(props) {
         };
         try {
             await axios.post('http://localhost:5000/api/stocks/', JSON.stringify(stock), config);
-            alert("Stock Successfully Added To Your Portfolio");
+            NProgress.done();
+            addToast(`${stocksymbol}Stock Successfully Added To Your Portfolio`, { appearance: 'success', autoDismiss: true });
         } catch (err) {
             console.log(err);
+            NProgress.done();
         }
     };
 

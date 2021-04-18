@@ -5,8 +5,12 @@ import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken';
 import NProgress from 'nprogress';
 import './nprogress.css';
+import { useToasts } from 'react-toast-notifications';
 
 function Login() {
+
+    const { addToast } = useToasts();
+
     const context = useContext(usercontext)
     const { setuser } = context
 
@@ -29,13 +33,14 @@ function Login() {
         setAuthToken(localStorage.token);
         try {
             const res = await axios.get('http://localhost:5000/api/auth/');
+            addToast("Logged In Successfully", { appearance: 'success', autoDismiss: true });
             console.log("Logged In");
             NProgress.done();
             setuser(res.data);
         } catch (err) {
             console.log(err);
             NProgress.done();
-            alert(err);
+            addToast({ err }, { appearance: 'error', autoDismiss: true });
         }
     };
 
@@ -56,7 +61,7 @@ function Login() {
         } catch (err) {
             console.log(err);
             NProgress.done();
-            alert("Invalid Credentials");
+            addToast("Invalid Credentials", { appearance: 'error', autoDismiss: true });
         }
     }
 
