@@ -5,9 +5,6 @@ function Aboutus() {
     return (
         <>
             <Navbar />
-            <div>
-                Stocks Tracker ABOUT US
-            </div>
             <div className="jumbotron flex m-lg-5 p-lg-5">
                 <h1> <b>ABOUT US</b></h1>
                 <br />

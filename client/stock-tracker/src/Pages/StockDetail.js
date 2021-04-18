@@ -59,7 +59,7 @@ function StockDetail(props) {
     return (
         <div >
             <Navbar />
-            <div className="d-flex flex-row mt-lg-4">
+            <div className="d-flex flex-row ">
                 {/* Basic stock details */}
                 <div className="d-flex flex-column justify-content-center jumbotron container w-25 mb-0" style={{ color: "grey", fontSize: "20px" }}>
                     <div><h2 className="ml-5 mb-4 text-dark">Stock Details </h2>

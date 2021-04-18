@@ -42,13 +42,12 @@ function MyPortfolio() {
             const res = await axios.get(`http://localhost:5000/api/search?searchquery=${symbol}%20yahoo`);
             NProgress.done();
             addToast(<div>
-                <br />
                 <h5>{`${symbol}:`}</h5>
                 <br />
                 <h6>{`======> Price: [ ${res.data.price} ]`}</h6>
                 <br />
                 <h6>{`======> Change: [ ${res.data.change} ] `}</h6>
-            </div>, { appearance: 'success' });
+            </div>, { appearance: 'info' });
         } catch (err) {
             NProgress.done();
             console.log(err);
@@ -59,14 +58,13 @@ function MyPortfolio() {
         <>
             <Navbar />
             <div className="d-flex">
-                <div className="container mt-lg-5 mr-5 overflow-scroll">
-                    <h7 className="mt-5">.</h7>
+                <div className="container mt-3 mr-5 overflow-scroll">
                     {!mystocks?.[0]
                         ? <h3 className="text-bold bold"> NO STOCKS ADDED TO YOUR PORTFOLIO </h3>
                         :
                         (
                             <>
-                                <h3 className="font-weight-light">Users portfolio</h3>
+                                <h3 className="font-weight-bolder">Users portfolio</h3>
                                 {mystocks.map((stock) => {
                                     return (
                                         <Link to={`/stock/${stock.symbol}`} className="btn btn-block btn-light w-100 m-3" >
@@ -97,7 +95,7 @@ function MyPortfolio() {
                         )
                     }
                 </div>
-                <img src={process.env.PUBLIC_URL + "/homeimgg.png"} alt="#" className="" width="800" height="791" />
+                <img src={process.env.PUBLIC_URL + "/homeimgg.png"} alt="#" className="" width="800" height="736" />
             </div>
         </>
     )

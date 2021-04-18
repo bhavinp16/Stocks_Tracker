@@ -61,11 +61,16 @@ function Signup() {
                 addToast("Server Error", { appearance: 'error', autoDismiss: true });
             }
             localStorage.setItem('token', res.data.token);
-            addToast("User Created", { appearance: 'error', autoDismiss: true });
+            addToast("User Created", { appearance: 'success', autoDismiss: true });
             loadUser();
         } catch (err) {
+            console.log(err);
             NProgress.done();
-            addToast({ err }, { appearance: 'error', autoDismiss: true });
+            if (formdata.password.length < 6) {
+                addToast("Weak Password Password!", { appearance: 'error', autoDismiss: true });
+            } else {
+                addToast("User Already Exists!", { appearance: 'error', autoDismiss: true });
+            }
         }
     }
 

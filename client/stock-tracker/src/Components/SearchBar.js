@@ -40,7 +40,7 @@ function SearchBar() {
 
 
     return (
-        <div className="mt-5 d-flex flex-column w-100">
+        <div className=" d-flex flex-column w-100">
             <div className="ml-5 mt-2 input-group w-75">
                 <input type="search" className="p-lg-2 m-lg-3 h-25 form-control" placeholder="Enter the stock name you want to search for: " onChange={handleChange} />
                 <button onClick={searchStock} className="btn btn-dark btn-lg shadow-sm m-lg-3"> Search </button>
@@ -70,13 +70,19 @@ function SearchBar() {
                     )
                     :
                     (
-                        <div className="jumbotron">
-                            <h1 className=" m-lg-5 p-lg-5 font-weight-lighter">
-                                Search for a Stock,
+                        <>
+                            <div className="jumbotron">
+                                <h1 className=" m-lg-5 p-lg-5 font-weight-lighter">
+                                    Search for a Stock,
                             <br /> which you would like
                             <br /> to know more about
                             </h1>
-                        </div>
+                            </div>
+                            <div className="d-flex justify-content-between m-2 font-italic font-weight-lighter">
+                                <h6 className="ml-lg-5">In the short run, the market is a voting machine, but in long run its a weighing machine.</h6>
+                                <h6 className="mr-lg-5 mb-3">-Benjamin Graham</h6>
+                            </div>
+                        </>
                     )
             }
 
