@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import NProgress from 'nprogress';
+import './nprogress.css';
 
 function MyPortfolio() {
 
@@ -24,8 +26,10 @@ function MyPortfolio() {
         try {
             await axios.delete(`http://localhost:5000/api/stocks/${id}`);
             getStock();
+            NProgress.done();
             alert("Stock Removed From Your Portfolio");
         } catch (err) {
+            NProgress.done();
             console.log(err);
         }
     }
@@ -33,9 +37,10 @@ function MyPortfolio() {
     const getRealtimeData = async (symbol) => {
         try {
             const res = await axios.get(`http://localhost:5000/api/search?searchquery=${symbol}%20yahoo`);
-            console.log(res.data);
+            NProgress.done();
             alert(`${symbol}:\n\tPrice:${res.data.price}\n\tChange:${res.data.change}`);
         } catch (err) {
+            NProgress.done();
             console.log(err);
         }
     }
@@ -60,12 +65,14 @@ function MyPortfolio() {
                                                 <div>
                                                     <button type="button" className="btn btn-dark mx-5 font-smaller font-weight-lighter" onClick={((e) => {
                                                         e.preventDefault();
+                                                        NProgress.start();
                                                         getRealtimeData(stock.symbol)
                                                     })}>
                                                         Get Realtime Data
                                                     </button>
                                                     <button type="button" className="close" aria-label="Close" onClick={(e) => {
                                                         e.preventDefault();
+                                                        NProgress.start();
                                                         deleteStock(stock._id)
                                                     }
                                                     }>

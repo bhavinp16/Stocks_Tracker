@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import usercontext from '../Context/User/usercontext';
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken';
+import NProgress from 'nprogress';
+import './nprogress.css';
 
 function Signup() {
     const context = useContext(usercontext)
@@ -27,15 +29,18 @@ function Signup() {
         setAuthToken(localStorage.token);
         try {
             const res = await axios.get('http://localhost:5000/api/auth/');
+            NProgress.done();
             console.log("Signed In");
             setuser(res.data);
         } catch (err) {
             console.log(err);
+            NProgress.done();
         }
     };
 
     const signupsubmit = async (e) => {
         e.preventDefault();
+        NProgress.start();
         // Register User
         const config = {
             headers: {
@@ -51,6 +56,7 @@ function Signup() {
             loadUser();
         } catch (err) {
             console.log(err);
+            NProgress.done();
             alert("Server Error");
         }
     }

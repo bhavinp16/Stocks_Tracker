@@ -1,4 +1,6 @@
 import React from 'react';
+import NProgress from 'nprogress';
+import '../Pages/nprogress.css';
 
 import Plotly from "plotly.js-basic-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
@@ -20,6 +22,7 @@ class Stock extends React.Component {
   }
 
   componentDidMount() {
+    NProgress.start();
     this.fetchStock();
   }
 
@@ -62,10 +65,11 @@ class Stock extends React.Component {
         }
       )
     this.render();
+    NProgress.done();
   }
 
   render() {
-    
+
     return (
       <div className="mt-5 d-flex justify-content-center container">
         <Plot

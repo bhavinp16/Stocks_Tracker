@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import NProgress from 'nprogress';
+import '../Pages/nprogress.css';
 
 // to add search bar suggestions and make api calls on submit 
 
@@ -16,6 +18,7 @@ function SearchBar() {
 
     const searchStock = (e) => {
         e.preventDefault();
+        NProgress.start();
         if (inputt.length !== 0) {
 
             //get search endpoints
@@ -25,9 +28,11 @@ function SearchBar() {
                     // handle success
                     const bestMatches = data.bestMatches;
                     setsuggArray(bestMatches);
+                    NProgress.done();
                 })
                 .catch(function (error) {
                     // handle error
+                    NProgress.done();
                     console.log(error);
                 });
         }

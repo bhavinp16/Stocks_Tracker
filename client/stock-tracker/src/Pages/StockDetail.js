@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar';
 import Stock from '../Components/Stock';
 import axios from 'axios';
+import NProgress from 'nprogress';
+import './nprogress.css';
 
 function StockDetail(props) {
 
@@ -13,6 +15,7 @@ function StockDetail(props) {
     // make api call to fetch the stock details
     // rapidapi key used
     useEffect(() => {
+        NProgress.start();
         fetch(`https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${stocksymbol}`, {
             "method": "GET",
             "headers": {
@@ -23,9 +26,11 @@ function StockDetail(props) {
             .then(response => response.json())
             .then(data => {
                 setGeneralData(data["Global Quote"]);
+                NProgress.done();
             })
             .catch(err => {
                 console.error(err);
+                NProgress.done();
             });
     }, [stocksymbol]);
 

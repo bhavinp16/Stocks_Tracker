@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import usercontext from '../Context/User/usercontext'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken';
+import NProgress from 'nprogress';
+import './nprogress.css';
 
 function Login() {
     const context = useContext(usercontext)
@@ -28,9 +30,11 @@ function Login() {
         try {
             const res = await axios.get('http://localhost:5000/api/auth/');
             console.log("Logged In");
+            NProgress.done();
             setuser(res.data);
         } catch (err) {
             console.log(err);
+            NProgress.done();
             alert(err);
         }
     };
@@ -38,6 +42,7 @@ function Login() {
 
     const logind = async (e) => {
         e.preventDefault();
+        NProgress.start();
         // Login User
         const config = {
             headers: {
@@ -50,6 +55,7 @@ function Login() {
             loadUser();
         } catch (err) {
             console.log(err);
+            NProgress.done();
             alert("Invalid Credentials");
         }
     }
