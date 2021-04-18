@@ -1,7 +1,10 @@
 const puppeteer = require('puppeteer');
 
 const searchGoogle = async (searchQuery) => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
 
     await page.goto('https://google.com');
@@ -44,11 +47,21 @@ const searchGoogle = async (searchQuery) => {
         return data;
     });
 
+
+    // yahoo finance scraping
+    const url = searchResults[0];
+    const page1 = await browser.newPage();
+    // let url = `https://finance.yahoo.com/quote/${ticker}?p=${ticker}&.tsrc=fin-srch`;
+    await page1.goto(url);
+    await page1.waitForTimeout('#quote-market-notice', { timeout: 1000 });
+    let price = await page1.evaluate(() => document.querySelector("#quote-header-info > div.Pos\\(r\\) > div > div > span").textContent);
+
+    let change = await page1.evaluate(() => document.querySelector("#quote-header-info > div.Pos\\(r\\) > div > div > span:nth-child(2)").textContent);
+
     await browser.close();
 
-    const url = searchResults;
-    console.log(url[0]);
-
+    return ({ price, change });
 };
 
 module.exports = searchGoogle;
+
