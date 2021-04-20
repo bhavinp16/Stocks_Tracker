@@ -4,6 +4,7 @@ import '../Pages/nprogress.css';
 
 import Plotly from "plotly.js-basic-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
+
 const Plot = createPlotlyComponent(Plotly);
 
 class Stock extends React.Component {
@@ -28,8 +29,7 @@ class Stock extends React.Component {
 
   fetchStock = async () => {
     const pointerToThis = this;
-    const API_KEY = '9KZFAE9XUH9ZQ1PF';
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stockSymbol}&outputsize=full&apikey=${API_KEY}`;
+    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stockSymbol}&outputsize=full&apikey=${process.env.REACT_APP_APIKEY2}`;
     this.setState({
       API: API_Call
     })

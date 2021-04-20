@@ -7,8 +7,6 @@ import '../Pages/nprogress.css';
 
 function SearchBar() {
 
-    const apikey = "B1304M15MQ95KRG9";
-
     const [inputt, setinputt] = useState("");
     const [suggArray, setsuggArray] = useState([]); // to store the suggestion names 
 
@@ -22,7 +20,7 @@ function SearchBar() {
         if (inputt.length !== 0) {
 
             //get search endpoints
-            fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=${apikey}`)
+            fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputt}&apikey=${process.env.REACT_APP_APIKEY1}`)
                 .then(response => response.json())
                 .then(data => {
                     // handle success

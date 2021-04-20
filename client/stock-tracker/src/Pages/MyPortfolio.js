@@ -44,10 +44,10 @@ function MyPortfolio() {
             addToast(<div>
                 <h5>{`${symbol}:`}</h5>
                 <br />
-                <h6>{`======> Price: [ ${res.data.price} ]`}</h6>
+                <h6>{`====> Price: [ ${res.data.price} ]`}</h6>
                 <br />
-                <h6>{`======> Change: [ ${res.data.change} ] `}</h6>
-            </div>, { appearance: 'info' });
+                <h6>{`====> Change: [ ${res.data.change} ] `}</h6>
+            </div>, { appearance: 'info', autoDismiss: true });
         } catch (err) {
             NProgress.done();
             console.log(err);

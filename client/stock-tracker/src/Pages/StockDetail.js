@@ -21,7 +21,7 @@ function StockDetail(props) {
         fetch(`https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${stocksymbol}`, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "d6bd8362c3msh180930e5c56b072p1ca825jsn731ccf821720",
+                "x-rapidapi-key": process.env.REACT_APP_APIKEY3,
                 "x-rapidapi-host": "alpha-vantage.p.rapidapi.com"
             }
         })
