@@ -19,7 +19,7 @@ const searchGoogle = async (searchQuery) => {
     await page.waitForSelector('div[id=search]');
 
     //Find all div elements with class 'bkWMgd'
-    const searchResults = await page.$$eval('div[class=hlcw0c] > div[class=g]', results => {
+    const searchResults = await page.$$eval('div[class=g]', results => {
 
         let data = [];
 
